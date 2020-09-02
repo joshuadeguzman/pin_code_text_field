@@ -525,7 +525,7 @@ class PinCodeTextFieldState extends State<PinCodeTextField>
       pinBoxColor = widget.highlightPinBoxColor;
       pinBoxHeight = widget.highlightPinBoxHeight;
       pinBoxWidth = widget.highlightPinBoxWidth;
-    } else if (i == text.length) {
+    } else if (i == text.length - 1) {
       borderColor = widget.hasTextBorderColor;
       pinBoxColor = widget.highlightPinBoxColor;
       pinBoxHeight = widget.highlightPinBoxHeight;
@@ -613,7 +613,9 @@ class PinCodeTextFieldState extends State<PinCodeTextField>
   }
 
   bool _shouldHighlight(int i) {
-    return hasFocus && (i == text.length - 1);
+    return hasFocus &&
+        (i == text.length ||
+            (i == text.length - 1 && text.length == widget.maxLength));
   }
 
   Widget _animatedTextBox(String text, int i) {
